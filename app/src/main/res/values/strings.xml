@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyFirstProject</string>
+    <string name="fragment_calculator">计算器</string>
+    <string name="fragment_info">记事本</string>
+    <string name="fragment_memo">物流管理</string>
+
+    <string name="btn_clear">C</string>
+    <string name="btn_jia">+</string>
+    <string name="btn_jian">-</string>
+    <string name="btn_chu">÷</string>
+    <string name="btn_cheng">×</string>
+    <string name="btn_dengyu">=</string>
+    <string name="btn_percent">%</string>
+    <string name="btn_back">◀</string>
+
+    
+    <string name="json_compane_type">
+        </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
