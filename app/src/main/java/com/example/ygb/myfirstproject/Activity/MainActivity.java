@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -51,7 +52,8 @@ public class  MainActivity extends AppCompatActivity {
     private void ininView() {
         mTabLayout= (TabLayout) findViewById(R.id.tl_tablayout);
         mViewPager= (ViewPager) findViewById(R.id.vp_viewpager);
-
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+       // setSupportActionBar(toolbar);
         //设置ViewPager的adapter
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

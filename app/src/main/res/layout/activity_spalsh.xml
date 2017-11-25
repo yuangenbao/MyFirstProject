@@ -14,4 +14,11 @@
         android:textSize="40dp"
         android:gravity="center"
         />
+   <!-- <com.romainpiel.titanic.TitanicTextView
+        android:id="@+id/titanic_tv"
+        android:text="@string/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#212121"
+        android:textSize="70sp"/>-->
 </LinearLayout>

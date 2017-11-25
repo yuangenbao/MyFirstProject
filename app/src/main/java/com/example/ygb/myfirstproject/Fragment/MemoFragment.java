@@ -3,6 +3,8 @@ package com.example.ygb.myfirstproject.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,12 +45,12 @@ public class MemoFragment extends Fragment implements View.OnClickListener{
     private AutoCompleteTextView etCompany;
     private Button btnSearch;
     private ListView listView;
-    private List<MemoItemData> mList;
+    private List<MemoItemData> mList=new ArrayList<MemoItemData>();
  /*   private List<Map<String,String>> companyList;
     private Map<String,String> companyMap;*/
     private ArrayAdapter arrayAdapter;
     private String companyTypeJson;
-    private String [] arr={"aa","aab","aac","auto"};
+    private  List<String> arrlist;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,9 +63,54 @@ public class MemoFragment extends Fragment implements View.OnClickListener{
         companyTypeJson=HttpUtils.COMPANY;
         btnSearch.setOnClickListener(this);
 
-
-        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,arr);
+        addName();
+        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,arrlist);
         etCompany.setAdapter(arrayAdapter);
+
+
+        etCompany.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(mList.size()>0){
+                    mList.clear();//清空数据集
+                    MemoItemAdapter memoItemAdapter=new MemoItemAdapter(getActivity(),mList);
+                    listView.setAdapter(memoItemAdapter);
+                }
+
+            }
+        });
+
+        etNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(mList.size()>0){
+                    mList.clear();//清空数据集
+                    MemoItemAdapter memoItemAdapter=new MemoItemAdapter(getActivity(),mList);
+                    listView.setAdapter(memoItemAdapter);
+                }
+
+            }
+        });
         return view;
 
     }
@@ -159,4 +206,22 @@ public class MemoFragment extends Fragment implements View.OnClickListener{
         }
         return re;
     }
+
+    public void addName(){
+        arrlist=new ArrayList<String>();
+        try {
+            JSONObject jsonObject=new JSONObject(companyTypeJson);
+            String result=jsonObject.getString("result");
+            JSONArray arr=new JSONArray(result);
+            for (int i=0;i<arr.length();i++){
+                JSONObject nameAndType=arr.getJSONObject(i);
+
+                String name=nameAndType.getString("name");
+                arrlist.add(name);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
